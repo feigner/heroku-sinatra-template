@@ -11,11 +11,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "private_network", type: "dhcp"
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
-  # web
   config.vm.network "forwarded_port", guest: 80, host: 7778   # http
   config.vm.network "forwarded_port", guest: 443, host: 7779  # https
 
-  config.vm.provision "shell", path: "bootstrap.sh", privileged: true, binary: false
+  config.vm.provision "shell", path: "bootstrap-env.sh"
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
